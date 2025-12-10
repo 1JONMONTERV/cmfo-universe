@@ -1,0 +1,28 @@
+﻿# Python
+__pycache__/
+*.pyc
+dist/
+build/
+
+# C / C++
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# CUDA
+*.cubin
+*.ptx
+
+# Logs
+*.log
+
+# Data
+*.bin
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
