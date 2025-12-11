@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: cmfo-universe
+Version: 1.0.0
+Summary: CMFO Universe: Fractal Toroidal 7D Computational Framework
+Home-page: https://github.com/1JONMONTERV/cmfo-universe
+Author: Jonnathan Montero Víquez
+Author-email: jonnathanmonteroviquez@gmail.com
+License: MIT
+Project-URL: Homepage, https://1jonmonterv.github.io/cmfo-universe
+Project-URL: Source, https://github.com/1JONMONTERV/cmfo-universe
+Project-URL: Documentation, https://1jonmonterv.github.io/cmfo-universe
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+
+\# CMFO Universe – Python SDK
+
+
+
+Framework oficial del sistema fractal-toroidal 7D CMFO.
+
+
+
+Autor: \*\*Jonnathan Montero Víquez\*\*  
+
+San José, Costa Rica  
+
+Licencia: MIT  
+
+Contacto: jonnathanmonteroviquez@gmail.com
+
+
+
