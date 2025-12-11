@@ -1,0 +1,73 @@
+{
+  "/cmfo-universe/markdown-page-fcc": {
+    "__comp": "1f391b9e",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "content": "393be207"
+  },
+  "/cmfo-universe/docs-94a": {
+    "__comp": "5e95c892",
+    "__context": {
+      "plugin": "aba21aa0"
+    }
+  },
+  "/cmfo-universe/docs-1c7": {
+    "__comp": "a7bd4aaa",
+    "__props": "05673433"
+  },
+  "/cmfo-universe/docs-da1": {
+    "__comp": "a94703ab"
+  },
+  "/cmfo-universe/docs/category/tutorial---basics-195": {
+    "__comp": "14eb3368",
+    "__props": "660eed3b"
+  },
+  "/cmfo-universe/docs/category/tutorial---extras-5de": {
+    "__comp": "14eb3368",
+    "__props": "264017a3"
+  },
+  "/cmfo-universe/docs/intro-00f": {
+    "__comp": "17896441",
+    "content": "0e384e19"
+  },
+  "/cmfo-universe/docs/tutorial-basics/congratulations-2b4": {
+    "__comp": "17896441",
+    "content": "822bd8ab"
+  },
+  "/cmfo-universe/docs/tutorial-basics/create-a-blog-post-968": {
+    "__comp": "17896441",
+    "content": "533a09ca"
+  },
+  "/cmfo-universe/docs/tutorial-basics/create-a-document-c5b": {
+    "__comp": "17896441",
+    "content": "1e4232ab"
+  },
+  "/cmfo-universe/docs/tutorial-basics/create-a-page-6f0": {
+    "__comp": "17896441",
+    "content": "5c868d36"
+  },
+  "/cmfo-universe/docs/tutorial-basics/deploy-your-site-e2c": {
+    "__comp": "17896441",
+    "content": "f55d3e7a"
+  },
+  "/cmfo-universe/docs/tutorial-basics/markdown-features-ee9": {
+    "__comp": "17896441",
+    "content": "18c41134"
+  },
+  "/cmfo-universe/docs/tutorial-extras/manage-docs-versions-02b": {
+    "__comp": "17896441",
+    "content": "dff1c289"
+  },
+  "/cmfo-universe/docs/tutorial-extras/translate-your-site-2ae": {
+    "__comp": "17896441",
+    "content": "e44a2883"
+  },
+  "/cmfo-universe/-bb4": {
+    "__comp": "c4f5d8e4",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "config": "5e9f5e1a"
+  }
+}

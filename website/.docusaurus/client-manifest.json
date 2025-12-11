@@ -1,0 +1,355 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "237": [
+      237
+    ],
+    "285": [
+      61,
+      401,
+      869,
+      285
+    ],
+    "17896441": [
+      285,
+      869,
+      401
+    ],
+    "main": [
+      354,
+      869,
+      792
+    ],
+    "runtime~main": [
+      792,
+      869,
+      354
+    ],
+    "05673433": [
+      48
+    ],
+    "0e384e19": [
+      976
+    ],
+    "14eb3368": [
+      869,
+      969
+    ],
+    "18c41134": [
+      262
+    ],
+    "1e4232ab": [
+      953
+    ],
+    "1f391b9e": [
+      285,
+      869,
+      61
+    ],
+    "264017a3": [
+      371
+    ],
+    "393be207": [
+      134
+    ],
+    "533a09ca": [
+      98
+    ],
+    "5c868d36": [
+      974
+    ],
+    "5e95c892": [
+      647
+    ],
+    "660eed3b": [
+      174
+    ],
+    "822bd8ab": [
+      748
+    ],
+    "a7456010": [
+      235
+    ],
+    "a7bd4aaa": [
+      717
+    ],
+    "a94703ab": [
+      869,
+      667
+    ],
+    "aba21aa0": [
+      742
+    ],
+    "c4f5d8e4": [
+      869,
+      634
+    ],
+    "dff1c289": [
+      724
+    ],
+    "e44a2883": [
+      736
+    ],
+    "f55d3e7a": [
+      863
+    ],
+    "styles": [
+      61,
+      285,
+      354,
+      401,
+      634,
+      667,
+      792,
+      969,
+      869
+    ]
+  },
+  "assets": {
+    "48": {
+      "js": [
+        {
+          "file": "assets/js/05673433.160d0a8d.js",
+          "hash": "5669034712643a4a",
+          "publicPath": "/cmfo-universe/assets/js/05673433.160d0a8d.js"
+        }
+      ]
+    },
+    "61": {
+      "js": [
+        {
+          "file": "assets/js/1f391b9e.b048fb2b.js",
+          "hash": "e107fb2385a2ef84",
+          "publicPath": "/cmfo-universe/assets/js/1f391b9e.b048fb2b.js"
+        }
+      ]
+    },
+    "98": {
+      "js": [
+        {
+          "file": "assets/js/533a09ca.51421015.js",
+          "hash": "9301f1278ce30a09",
+          "publicPath": "/cmfo-universe/assets/js/533a09ca.51421015.js"
+        }
+      ]
+    },
+    "134": {
+      "js": [
+        {
+          "file": "assets/js/393be207.5bbed092.js",
+          "hash": "008a7146b0bc9432",
+          "publicPath": "/cmfo-universe/assets/js/393be207.5bbed092.js"
+        }
+      ]
+    },
+    "174": {
+      "js": [
+        {
+          "file": "assets/js/660eed3b.023428f9.js",
+          "hash": "3cbe12727a88d6a4",
+          "publicPath": "/cmfo-universe/assets/js/660eed3b.023428f9.js"
+        }
+      ]
+    },
+    "235": {
+      "js": [
+        {
+          "file": "assets/js/a7456010.0073e292.js",
+          "hash": "b11f94c40a689ff4",
+          "publicPath": "/cmfo-universe/assets/js/a7456010.0073e292.js"
+        }
+      ]
+    },
+    "237": {
+      "js": [
+        {
+          "file": "assets/js/237.99b167a9.js",
+          "hash": "16ce1dfa96929b87",
+          "publicPath": "/cmfo-universe/assets/js/237.99b167a9.js"
+        }
+      ]
+    },
+    "262": {
+      "js": [
+        {
+          "file": "assets/js/18c41134.e5651a14.js",
+          "hash": "d3e8a9c1916a9587",
+          "publicPath": "/cmfo-universe/assets/js/18c41134.e5651a14.js"
+        }
+      ]
+    },
+    "285": {
+      "js": [
+        {
+          "file": "assets/js/285.5ebd4aa6.js",
+          "hash": "aee31ec243bcf29d",
+          "publicPath": "/cmfo-universe/assets/js/285.5ebd4aa6.js"
+        }
+      ]
+    },
+    "354": {
+      "js": [
+        {
+          "file": "assets/js/runtime~main.9c616170.js",
+          "hash": "97ca19ac1fe11c28",
+          "publicPath": "/cmfo-universe/assets/js/runtime~main.9c616170.js"
+        }
+      ]
+    },
+    "371": {
+      "js": [
+        {
+          "file": "assets/js/264017a3.15771a89.js",
+          "hash": "83eb0ae675624ea2",
+          "publicPath": "/cmfo-universe/assets/js/264017a3.15771a89.js"
+        }
+      ]
+    },
+    "401": {
+      "js": [
+        {
+          "file": "assets/js/17896441.6b125fe1.js",
+          "hash": "ff1be447b9b4801c",
+          "publicPath": "/cmfo-universe/assets/js/17896441.6b125fe1.js"
+        }
+      ]
+    },
+    "634": {
+      "js": [
+        {
+          "file": "assets/js/c4f5d8e4.ee3232df.js",
+          "hash": "46b314c39e6239b3",
+          "publicPath": "/cmfo-universe/assets/js/c4f5d8e4.ee3232df.js"
+        }
+      ]
+    },
+    "647": {
+      "js": [
+        {
+          "file": "assets/js/5e95c892.b67cad83.js",
+          "hash": "e9ea57905adba754",
+          "publicPath": "/cmfo-universe/assets/js/5e95c892.b67cad83.js"
+        }
+      ]
+    },
+    "667": {
+      "js": [
+        {
+          "file": "assets/js/a94703ab.c75d26d6.js",
+          "hash": "25cea6e6ffcd50de",
+          "publicPath": "/cmfo-universe/assets/js/a94703ab.c75d26d6.js"
+        }
+      ]
+    },
+    "717": {
+      "js": [
+        {
+          "file": "assets/js/a7bd4aaa.cf19bfe9.js",
+          "hash": "2c8ec214fb986011",
+          "publicPath": "/cmfo-universe/assets/js/a7bd4aaa.cf19bfe9.js"
+        }
+      ]
+    },
+    "724": {
+      "js": [
+        {
+          "file": "assets/js/dff1c289.2fcacccb.js",
+          "hash": "0084ee8b58a89718",
+          "publicPath": "/cmfo-universe/assets/js/dff1c289.2fcacccb.js"
+        }
+      ]
+    },
+    "736": {
+      "js": [
+        {
+          "file": "assets/js/e44a2883.629e8129.js",
+          "hash": "0e5be0a63a77fb7d",
+          "publicPath": "/cmfo-universe/assets/js/e44a2883.629e8129.js"
+        }
+      ]
+    },
+    "742": {
+      "js": [
+        {
+          "file": "assets/js/aba21aa0.f990d6fb.js",
+          "hash": "6ae5ca575f6a4bae",
+          "publicPath": "/cmfo-universe/assets/js/aba21aa0.f990d6fb.js"
+        }
+      ]
+    },
+    "748": {
+      "js": [
+        {
+          "file": "assets/js/822bd8ab.fe8c2678.js",
+          "hash": "1e05b382d4aae48e",
+          "publicPath": "/cmfo-universe/assets/js/822bd8ab.fe8c2678.js"
+        }
+      ]
+    },
+    "792": {
+      "js": [
+        {
+          "file": "assets/js/main.55b0d60b.js",
+          "hash": "0b3c719b741f3891",
+          "publicPath": "/cmfo-universe/assets/js/main.55b0d60b.js"
+        }
+      ]
+    },
+    "863": {
+      "js": [
+        {
+          "file": "assets/js/f55d3e7a.ca28ddef.js",
+          "hash": "69ac45d9a3e71d19",
+          "publicPath": "/cmfo-universe/assets/js/f55d3e7a.ca28ddef.js"
+        }
+      ]
+    },
+    "869": {
+      "css": [
+        {
+          "file": "assets/css/styles.16a1cbe7.css",
+          "hash": "ee6069f4ad2c5025",
+          "publicPath": "/cmfo-universe/assets/css/styles.16a1cbe7.css"
+        }
+      ]
+    },
+    "953": {
+      "js": [
+        {
+          "file": "assets/js/1e4232ab.8bf57a9f.js",
+          "hash": "cb2b141c506d91ad",
+          "publicPath": "/cmfo-universe/assets/js/1e4232ab.8bf57a9f.js"
+        }
+      ]
+    },
+    "969": {
+      "js": [
+        {
+          "file": "assets/js/14eb3368.fbfbb887.js",
+          "hash": "9db8802b716370bc",
+          "publicPath": "/cmfo-universe/assets/js/14eb3368.fbfbb887.js"
+        }
+      ]
+    },
+    "974": {
+      "js": [
+        {
+          "file": "assets/js/5c868d36.d428e22e.js",
+          "hash": "d3e4cba2f142d96a",
+          "publicPath": "/cmfo-universe/assets/js/5c868d36.d428e22e.js"
+        }
+      ]
+    },
+    "976": {
+      "js": [
+        {
+          "file": "assets/js/0e384e19.19c06740.js",
+          "hash": "10254537bcf20af0",
+          "publicPath": "/cmfo-universe/assets/js/0e384e19.19c06740.js"
+        }
+      ]
+    }
+  }
+}
