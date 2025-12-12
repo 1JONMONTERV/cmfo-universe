@@ -1,0 +1,8 @@
+{
+  "name": "cmfo-node-test",
+  "version": "0.1.0",
+  "description": "Minimal node test for cmfo",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
