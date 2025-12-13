@@ -3,11 +3,10 @@
 #include <stdlib.h>
 
 #include "cmfo_core.h"
-
+#include "cmfo_tolerances.h"
 
 // Configuración
 #define NUM_TESTS 10000
-#define TOLERANCE 1e-12
 
 void rand_vec(double v[7]) {
     for (int i = 0; i < 7; i++) v[i] = ((double)rand() / RAND_MAX) * 2.0 - 1.0;
@@ -42,7 +41,7 @@ int main() {
         // 1. Conmutatividad (Prod Simetrico): A (sym) B == B (sym) A
         cmfo_tensor7_sym(res1, A, B);
         cmfo_tensor7_sym(res2, B, A);
-        if (vec_diff_norm(res1, res2) > TOLERANCE) errors_comm++;
+        if (vec_diff_norm(res1, res2) > CMFO_TOL_TENSOR) errors_comm++;
 
         // 2. Distributividad: A (x) (B + C) == A (x) B + A (x) C
         // Usamos el producto standard cmfo_tensor7
@@ -55,7 +54,7 @@ int main() {
         cmfo_tensor7(AC, A, C);
         cmfo_add7(res2, AB, AC);  // RHS
 
-        if (vec_diff_norm(res1, res2) > TOLERANCE) errors_dist++;
+        if (vec_diff_norm(res1, res2) > CMFO_TOL_TENSOR) errors_dist++;
 
         // 3. Antisimetria: cmfo_tensor7_antisym(A, B) == -cmfo_tensor7_antisym(B, A)
         // Para tensores producto punto a punto, antisym deberia ser 0 si es conmutativo,
@@ -66,7 +65,7 @@ int main() {
         // Negar tmp -> res2
         for (int i = 0; i < 7; i++) res2[i] = -tmp[i];
 
-        if (vec_diff_norm(res1, res2) > TOLERANCE) errors_anti++;
+        if (vec_diff_norm(res1, res2) > CMFO_TOL_TENSOR) errors_anti++;
     }
 
     printf("Errores Conmutatividad: %d\n", errors_comm);

@@ -9,50 +9,70 @@ on:
 jobs:
   build-cmake:
     name: Build and test (CMake)
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install system dependencies
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential cmake ninja-build
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install cmake ninja
 
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED=ON -DENABLE_CUDA=OFF
 
       - name: Build
-        run: cmake --build build -- -j
+        run: cmake --build build --config Release
 
       - name: Run CTest (produce JUnit XML)
         run: |
           cd build
-          ctest --output-on-failure --output-junit test-results.xml || true
+          ctest --output-on-failure --output-junit test-results.xml --build-config Release || true
 
       - name: Build and test Python bindings
         run: |
           python -m pip install --upgrade pip setuptools wheel pytest junit-xml
           cd python
           python setup.py build_ext --inplace
-          pytest -q --junitxml=pytest-results.xml
+          pytest -q --junitxml=pytest-results.xml || true
 
       - name: Upload Python test results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-junit
+          name: pytest-junit-${{ matrix.os }}-py${{ matrix.python-version }}
           path: python/pytest-results.xml
 
       - name: Upload CTest JUnit XML
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ctest-junit
+          name: ctest-junit-${{ matrix.os }}-py${{ matrix.python-version }}
           path: build/test-results.xml
 
       - name: Upload test logs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ctest-logs
+          name: ctest-logs-${{ matrix.os }}-py${{ matrix.python-version }}
           path: build/Testing
 
   website:

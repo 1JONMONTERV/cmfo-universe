@@ -1,5 +1,16 @@
 import math
 import sys
+import os
+
+# Add parent directory to path to import cmfo module
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'python'))
+
+try:
+    from cmfo.tolerances import CMFO_TOL_SOLITON_ENERGY
+except ImportError:
+    # Fallback if module not yet installed
+    CMFO_TOL_SOLITON_ENERGY = 1e-6
+    print("Warning: Using fallback tolerance constant")
 
 # Verification Script for Sine-Gordon Mathematics
 # Rigor Level: High (Double Precision check independent of C code)
@@ -92,7 +103,8 @@ def main():
             
             print(f"{v:<15.2f} | {E_theo:<18.6f} | {E_disc:<18.6f} | {error:<15.2e}")
             
-            # Criterio de Aceptacion: < 1% error para discretización N=1000
+            # Criterio de Aceptacion: error < CMFO_TOL_SOLITON_ENERGY for discretización N=1000
+            # Note: Using 1e-2 (1%) as discretization error is larger than energy conservation tolerance
             if error > 1e-2:
                 all_passed = False
                 print(f"  [FAIL] Error excedió 1% para v={v}")

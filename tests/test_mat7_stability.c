@@ -3,10 +3,10 @@
 #include <stdlib.h>
 
 #include "cmfo_core.h"
+#include "cmfo_tolerances.h"
 
 // Configuración de prueba
 #define NUM_TESTS 10000
-#define TOLERANCE 1e-12
 
 // Generador de números aleatorios [-1, 1]
 void rand_mat(double M[7][7]) {
@@ -54,11 +54,11 @@ int main() {
     printf("Error Maximo (Norma Inf): %.5e\n", max_error);
 
     // Criterio de Aceptación
-    if (max_error < TOLERANCE) {
+    if (max_error < CMFO_TOL_MAT_INV) {
         printf("[PASS] Estabilidad Confirmada. El algebra T7 es solida.\n");
         return 0;
     } else {
-        printf("[FAIL] Error excede la tolerancia de %.1e\n", TOLERANCE);
+        printf("[FAIL] Error excede la tolerancia de %.1e\n", CMFO_TOL_MAT_INV);
         return 1;
     }
 }
