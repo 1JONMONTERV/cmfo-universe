@@ -201,9 +201,27 @@
   font-size: 1.2rem;
 }
 
-.codeExample pre {
+.codeBlock {
   margin: 0 !important;
+  padding: 1.5rem !important;
+  background: #1e1e1e !important;
   border-radius: 0 !important;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.codeBlock code {
+  color: #d4d4d4;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.heroImage {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+  animation: float 6s ease-in-out infinite;
 }
 
 /* Benchmarks */
