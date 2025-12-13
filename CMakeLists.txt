@@ -1,91 +1,78 @@
-﻿cmake_minimum_required(VERSION 3.10)
-project(CMFO_Universe LANGUAGES C CXX CUDA)
 
-# ===========================================================
-# CONFIGURACIÓN GENERAL
-# ===========================================================
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 14)
-include_directories(include)
+# Top-level CMake for CMFO-UNIVERSE
 
-# ===========================================================
-# CMFO CORE LIB (CPU)
-# ===========================================================
-add_library(cmfo_core STATIC
-    src/cmfo_core.c
-    src/cmfo_mat7.c
-    src/cmfo_mat7_mul.c
-    src/cmfo_mat7_det.c
-    src/cmfo_mat7_inv.c
-    src/cmfo_tensor7.c
-    src/cmfo_soliton.c 
+cmake_minimum_required(VERSION 3.18)
+project(cmfo_universe LANGUAGES C)
+
+# Source layout
+set(CMFO_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
+set(CMFO_SRC_DIR "${CMAKE_SOURCE_DIR}/src")
+
+file(GLOB CMFO_SOURCES
+    "${CMFO_SRC_DIR}/cmfo_core.c"
+    "${CMFO_SRC_DIR}/cmfo_mat7.c"
+    "${CMFO_SRC_DIR}/cmfo_mat7_mul.c"
+    "${CMFO_SRC_DIR}/cmfo_mat7_det.c"
+    "${CMFO_SRC_DIR}/cmfo_mat7_inv.c"
+    "${CMFO_SRC_DIR}/cmfo_tensor7.c"
+    "${CMFO_SRC_DIR}/cmfo_soliton.c"
 )
 
-# ===========================================================
-# CMFO CUDA LIB (GPU)
-# ===========================================================
-# Configuración de Arquitectura (SM86 por defecto, ajustable)
-if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-    set(CMAKE_CUDA_ARCHITECTURES 86)
+# Library target (core C implementation)
+option(BUILD_SHARED "Build shared library for bindings" OFF)
+add_library(cmfo_core STATIC ${CMFO_SOURCES})
+if(BUILD_SHARED)
+  add_library(cmfo_core_shared SHARED ${CMFO_SOURCES})
+  target_include_directories(cmfo_core_shared PUBLIC ${CMFO_INCLUDE_DIR})
+  set_target_properties(cmfo_core_shared PROPERTIES OUTPUT_NAME "cmfo_core")
+  if(MSVC)
+    target_compile_definitions(cmfo_core_shared PRIVATE CMFO_CORE_EXPORTS)
+  endif()
 endif()
+target_include_directories(cmfo_core PUBLIC ${CMFO_INCLUDE_DIR})
+target_compile_features(cmfo_core PUBLIC c_std_99)
 
-# Solo compilar CUDA si se encuentran los archivos (por seguridad)
-if(EXISTS "${CMAKE_SOURCE_DIR}/cuda/cmfo_kernels.cu")
-    add_library(cmfo_cuda STATIC
-        cuda/cmfo_kernels.cu
-        cuda/theta_cmfo_kernel.cu
-    )
-    set_target_properties(cmfo_cuda PROPERTIES
+# Optionally configure CUDA pieces if explicitly enabled and sources present
+option(ENABLE_CUDA "Enable CUDA targets (requires CUDA toolkit installed)" OFF)
+if(ENABLE_CUDA AND EXISTS "${CMAKE_SOURCE_DIR}/cuda")
+  # Only enable CUDA language if nvcc is available on the system.
+  find_program(NVCC_EXECUTABLE nvcc)
+  if(NVCC_EXECUTABLE)
+    enable_language(CUDA)
+    cmake_policy(SET CMP0104 NEW)
+    # Default to a reasonable architecture if not set by user
+    if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+      set(CMAKE_CUDA_ARCHITECTURES 86)
+    endif()
+
+    file(GLOB CUDA_SOURCES "${CMAKE_SOURCE_DIR}/cuda/*.cu")
+    if(CUDA_SOURCES)
+      add_library(cmfo_cuda STATIC ${CUDA_SOURCES})
+      target_include_directories(cmfo_cuda PUBLIC ${CMFO_INCLUDE_DIR})
+      set_target_properties(cmfo_cuda PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON
         CUDA_RESOLVE_DEVICE_SYMBOLS ON
-    )
+      )
+      target_link_libraries(cmfo_cuda PUBLIC cmfo_core)
+
+      # Add CUDA test executable if test exists
+      if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_cuda.cu")
+        add_executable(test_cuda tests/test_cuda.cu)
+        set_target_properties(test_cuda PROPERTIES
+          CUDA_SEPARABLE_COMPILATION ON
+          CUDA_RESOLVE_DEVICE_SYMBOLS ON
+        )
+        target_link_libraries(test_cuda PRIVATE cmfo_cuda cmfo_core cudart)
+      endif()
+    endif()
+  else()
+    message(WARNING "CUDA folder found but 'nvcc' not in PATH. Skipping CUDA targets.")
+    enable_language(C) # Fallback? No need, already enabled
+  endif()
+elseif(EXISTS "${CMAKE_SOURCE_DIR}/cuda")
+  message(WARNING "CUDA sources present but ENABLE_CUDA is OFF. Pass -DENABLE_CUDA=ON to enable CUDA build.")
 endif()
 
-# ===========================================================
-# TESTS
-# ===========================================================
+# Enable tests and add tests folder
 enable_testing()
-
-# Test Core (Existente)
-if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_core.c")
-    add_executable(test_core tests/test_core.c)
-    target_link_libraries(test_core PRIVATE cmfo_core)
-    add_test(NAME CoreTest COMMAND test_core)
-endif()
-
-# Test CUDA Original
-if(TARGET cmfo_cuda AND EXISTS "${CMAKE_SOURCE_DIR}/tests/test_cuda.cu")
-    add_executable(test_cuda tests/test_cuda.cu)
-    target_link_libraries(test_cuda PRIVATE cmfo_cuda cmfo_core cudart)
-    set_target_properties(test_cuda PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-    add_test(NAME CudaTest COMMAND test_cuda)
-endif()
-
-# Test Theta Kernel
-if(TARGET cmfo_cuda AND EXISTS "${CMAKE_SOURCE_DIR}/tests/test_theta_kernel.cu")
-    add_executable(test_theta_kernel tests/test_theta_kernel.cu)
-    target_link_libraries(test_theta_kernel PRIVATE cmfo_cuda cmfo_core cudart)
-    set_target_properties(test_theta_kernel PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
-    add_test(NAME ThetaKernelTest COMMAND test_theta_kernel)
-endif()
-
-# Test Soliton Collision (Nuevo Hito 4) - Pure CPU C
-if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_soliton_collision.c")
-    add_executable(test_soliton tests/test_soliton_collision.c)
-    target_link_libraries(test_soliton PRIVATE cmfo_core m) # Link math lib
-    add_test(NAME SolitonCollisionTest COMMAND test_soliton)
-endif()
-
-# Test Matrix Stability (Nuevo Hito Extra)
-if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_mat7_stability.c")
-    add_executable(test_mat7_stab tests/test_mat7_stability.c)
-    target_link_libraries(test_mat7_stab PRIVATE cmfo_core m)
-    add_test(NAME Mat7StabilityTest COMMAND test_mat7_stab)
-endif()
-
-# Test Tensor Properties (Hito 8)
-if(EXISTS "${CMAKE_SOURCE_DIR}/tests/test_tensor7_props.c")
-    add_executable(test_tensor_props tests/test_tensor7_props.c)
-    target_link_libraries(test_tensor_props PRIVATE cmfo_core m)
-    add_test(NAME TensorPropsTest COMMAND test_tensor_props)
-endif()
+add_subdirectory(tests)
