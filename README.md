@@ -79,6 +79,14 @@ Para validar que la inversión de matrices 7x7 es numéricamente estable:
 ./test_mat7_stab
 ```
 
+### Verificación de Tensores T7
+
+Para validar propiedades algebraicas (Conmutatividad, Distributividad, Antisimetría):
+
+```bash
+./test_tensor_props
+```
+
 ### Lógica Phi (Generalización Booleana)
 
 CMFO demuestra que la lógica booleana es un caso degenerado ($\phi \to 1$) de la lógica fractal:
