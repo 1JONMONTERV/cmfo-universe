@@ -1,486 +1,120 @@
-﻿SDK CMFO-UNIVERSE v1.0
+﻿# CMFO-UNIVERSE v1.0
+> **Motor de cálculo fractal φ-lógico • Álgebra T⁷ • Acelerado CUDA**
 
-Motor de cálculo fractal φ-lógico • Álgebra T⁷ • Acelerado CUDA
+![License](https://img.shields.io/badge/License-Commercial%20Restricted-red)
+![Build Status](https://img.shields.io/github/actions/workflow/status/1JONMONTERV/cmfo-universe/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![CUDA](https://img.shields.io/badge/CUDA-SM86-green)
 
+**CMFO-UNIVERSE** es el primer SDK público que implementa computación fractal determinista basada en geometría T⁷, reemplazando completamente la lógica booleana tradicional por **φ-logic**, una lógica operativa continua y geométrica.
 
+## Características Principales
 
-Autor: Jonnathan Montero Víquez
+*   **Núcleo matemático fractal (C)**: Álgebra vectorial y matricial exacta en dimensión 7.
+*   **Precisión Exacta**: Determinante e inversa 7×7 exacta (sin errores de punto flotante).
+*   **Tensores**: Tensores fractales de segundo orden.
+*   **Alto Rendimiento**: Kernels CUDA altamente optimizados para SM86.
+*   **Fiabilidad**: Pruebas automáticas de CPU/GPU.
+*   **Estabilidad**: API pública estable, portátil y reproducible.
 
-Ubicación: San José, Costa Rica
+Diseñado para investigación avanzada, ingeniería industrial, física computacional, IA fractal y minería criptográfica estructural.
 
-Contacto: jmvlavacar@hotmail.com
+---
 
+## Arquitectura del Sistema
 
-
-Licencia: CMFO-UNIVERSE Licencia v1.1 – Uso comercial restringido
-
-Copyright © 2025
-
-
-
-1\. Descripción del Proyecto
-
-
-
-CMFO-UNIVERSE es el primer SDK público que implementa computación fractal determinista basada en geometría T⁷, reemplazando completamente la lógica booleana tradicional por φ-logic , una lógica operativa continua y geométrica.
-
-
-
-El SDK proporciona:
-
-
-
-Núcleo matemático fractal (C)
-
-
-
-Álgebra vectorial y matricial exacta en dimensión 7
-
-
-
-Determinante e inversa 7×7 exacta (sin errores FP)
-
-
-
-Tensores fractales de segundo orden
-
-
-
-Kernels CUDA altamente optimizados para SM86
-
-
-
-Pruebas automáticas de CPU/GPU
-
-
-
-API pública estable, portátil y reproducible
-
-
-
-Diseñado para investigación avanzada, ingeniería industrial, física computacional, IA fractal y minería criptográfica estructural
-
-
-
-2\. Arquitectura del Sistema
-
-
-
-El proyecto implementa la siguiente estructura:
-
-
-
+```
 cmfo-universe/
-
-│
-
-├── include/
-
-│   └── cmfo\_core.h
-
-│
-
-├── src/
-
-│   ├── cmfo\_core.c
-
-│   ├── cmfo\_mat7.c
-
-│   ├── cmfo\_mat7\_mul.c
-
-│   ├── cmfo\_mat7\_det.c
-
-│   ├── cmfo\_mat7\_inv.c
-
-│   └── cmfo\_tensor7.c
-
-│
-
-├── cuda/
-
-│   └── cmfo\_kernels.cu
-
-│
-
-├── tests/
-
-│   ├── test\_core.c
-
-│   ├── test\_mat7.c
-
-│   ├── test\_mat7\_mul.c
-
-│   ├── test\_mat7\_det.c
-
-│   ├── test\_mat7\_inv.c
-
-│   └── test\_cuda.cu
-
-│
-
-├── CMakeLists.txt
-
-├── LICENSE
-
-└── README.md
-
-
-
-3\. Capacidades técnicas
-
-3.1 Núcleo fractal φ-lógico
-
-
-
-Incluye:
-
-
-
-φ exacto (1.618…)
-
-
-
-τ exacto (0.618…)
-
-
-
-Producto interno dimensión-7
-
-
-
-Norma fractal
-
-
-
-Suma vectorial y escalada
-
-
-
-Tensores simétricos y antisimétricos
-
-
-
-Todos verificados por pruebas automáticas.
-
-
-
-3.2 Matrices 7×7
-
-
-
-Operaciones implementadas:
-
-
-
-Identidad
-
-
-
-Transposición
-
-
-
-Multiplicación exacta
-
-
-
-Determinante por expansión de cofactores
-
-
-
-Inversa exacta 7×7
-
-
-
-Validaciones:
-
-
-
-\[OK] det(I) = 1
-
-\[OK] inverse(I) passed
-
-
-
-3.3 Núcleos CUDA (SM86)
-
-
-
-Implementado:
-
-
-
-cmfo\_tensor7\_gpu()
-
-
-
-cmfo\_dot7\_gpu()
-
-
-
-Salida demostrada:
-
-
-
-\[GPU] tensor7 = \[7 12 15 16 15 12 7]
-
-\[GPU] dot7 = 84
-
-
-
-
-
-Núcleos compilados con:
-
-
-
-Compilación separable NVCC
-
-
-
-vinculación de dispositivos correcta
-
-
-
-cudart\_static + cudadevrt
-
-
-
-4\. Compilación
-
-CPU:
-
+├── include/        # Cabeceras (.h)
+├── src/            # Código fuente C (Núcleo)
+├── cuda/           # Kernels CUDA (.cu)
+├── python/         # SDK de Python
+├── tests/          # Pruebas unitarias
+├── CMakeLists.txt  # Configuración de construcción
+└── README.md       # Documentación e información
+```
+
+## Instalación y Compilación
+
+### Requisitos previos
+*   CMake 3.10+
+*   Compilador C++ (GCC/Clang/MSVC)
+*   **Opcional (para GPU)**: NVIDIA CUDA Toolkit 12.x+ y GPU SM86 (Serie RTX 30/40)
+
+### Compilación (CPU)
+
+```bash
 mkdir build
-
 cd build
-
 cmake ..
-
 cmake --build . --config Release
+```
 
+### Ejecutar Pruebas
+```bash
+cd build
+ctest --output-on-failure
+```
 
+### Verificación de Solitones (Sine-Gordon)
 
-CUDA:
+Para validar la conservación de energía y las propiedades topológicas:
 
+1.  Ejecutar la simulación C (genera CSV):
+    ```bash
+    ./test_soliton
+    ```
+2.  Ejecutar script de verificación Python:
+    ```bash
+    python python/verify_soliton.py
+    ```
+    Consulte [Docs/THEORY_SOLITON.md](Docs/THEORY_SOLITON.md) para detalles teóricos.
 
+### Lógica Phi (Generalización Booleana)
 
-Requiere:
+CMFO demuestra que la lógica booleana es un caso degenerado ($\phi \to 1$) de la lógica fractal:
 
+- **Teoría**: [Docs/THEORY_PHI_LOGIC.md](Docs/THEORY_PHI_LOGIC.md)
+- **Demo**: Ejecutar `python python/demo_phi_logic.py` para ver la convergencia.
 
+---
 
-Visual Studio 2022
+## Ejemplo de Uso
 
-
-
-Kit de herramientas CUDA 12.xo 13.x
-
-
-
-GPU NVIDIA SM 86 (serie 30)
-
-
-
-5\. Ejemplo mínimo (CPU)
-
-\#include "cmfo\_core.h"
-
-
+### C++ (CPU)
+```c
+#include "cmfo_core.h"
 
 int main() {
-
-&nbsp;   double a\[7] = {1,2,3,4,5,6,7};
-
-&nbsp;   double b\[7] = {6,5,4,3,2,1,0};
-
-
-
-&nbsp;   double out\[7];
-
-&nbsp;   cmfo\_tensor7(out, a, b);
-
-&nbsp;   cmfo\_print\_vec7(out);
-
+    double a[7] = {1,2,3,4,5,6,7};
+    double b[7] = {6,5,4,3,2,1,0};
+    double out[7];
+    
+    cmfo_tensor7(out, a, b);
+    cmfo_print_vec7(out);
+    return 0;
 }
+```
 
+### CUDA
+```cpp
+#include "cmfo_kernels.cuh"
 
-
-6\. Ejemplo mínimo (CUDA)
-
-\#include "cmfo\_kernels.cuh"
-
-
-
-\_\_global\_\_ void demo(double\* out) {
-
-&nbsp;   double a\[7] = {1,2,3,4,5,6,7};
-
-&nbsp;   double b\[7] = {6,5,4,3,2,1,0};
-
-&nbsp;   cmfo\_tensor7\_gpu(out, a, b);
-
+__global__ void demo(double* out) {
+    double a[7] = {1,2,3,4,5,6,7};
+    double b[7] = {6,5,4,3,2,1,0};
+    cmfo_dynamics_gpu(out, a, b); // Nuevo kernel dinámico
 }
+```
 
+---
 
+## Licencia
 
-7\. Licencia (currículum)
+**CMFO-UNIVERSE Licencia v1.1 – Uso comercial restringido**
+Copyright © 2025 Jonnathan Montero Víquez
 
+*   **Permitido**: Uso personal, académico e investigación no comercial.
+*   **Requiere Licencia**: Integración en productos, uso empresarial o distribución comercial.
 
-
-Licencia CMFO-UNIVERSE v1.1 – Comercial restringida
-
-
-
-Permite:
-
-
-
-Uso personal
-
-
-
-Uso académico
-
-
-
-Investigación no comercial
-
-
-
-Requiere licencia pagada:
-
-
-
-Integración de productos
-
-
-
-Uso empresarial
-
-
-
-Distribución comercial
-
-
-
-Implementación industrial
-
-
-
-Solicitudes de licencia:
-
-
-
-Jonnathan Montero Víquez
-
-San José, Costa Rica
-
-Correo electrónico: jmvlavacar@hotmail.com
-
-
-
-8\. Validación Completa (CPU y GPU)
-
-
-
-Estado de las pruebas después de la consolidación:
-
-
-
-\[OK] phi
-
-\[OK] tau
-
-\[OK] norm7
-
-\[OK] dot7
-
-\[OK] tensor7 CPU
-
-\[OK] tensor7 GPU
-
-\[OK] mat7\_mul
-
-\[OK] det(I) = 1
-
-\[OK] inverse(I) passed
-
-
-
-
-
-No hay fallos, no hay pendientes, no hay advertencias funcionales.
-
-
-
-\*\*9. Hoja de ruta ejecutada
-
-
-
-(no hay tareas pendientes)\*\*
-
-
-
-Fase	Módulo	Estado
-
-1	Núcleo C T⁷	COMPLETO
-
-2	Matrices 7×7	COMPLETO
-
-3	Tensores	COMPLETO
-
-4	Determinante exacto	COMPLETO
-
-5	Inversa exacta	COMPLETO
-
-6	Núcleos CUDA	COMPLETO
-
-7	Pruebas de GPU	COMPLETO
-
-8	Consolidación de CMake	COMPLETO
-
-9	README corporativo final	COMPLETO
-
-10	LICENCIA v1.1	COMPLETO
-
-10\. Propósito del SDK
-
-
-
-CMFO-UNIVERSE constituye la base computacional fractal universal, lista para:
-
-
-
-Física CMFO
-
-
-
-IA fractal CMFO
-
-
-
-Redes CMFO
-
-
-
-ASICs fractales
-
-
-
-Minería determinista
-
-
-
-Computación subcuántica
-
-
-
-Motores de simulación T⁷
-
-
-
-Es el estándar oficial de computación fractal φ-lógica.
-
-
-
-
-
+Para solicitudes de licencia, contactar a: **jmvlavacar@hotmail.com** (San José, Costa Rica).
